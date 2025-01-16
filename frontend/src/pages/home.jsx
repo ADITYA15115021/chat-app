@@ -16,23 +16,24 @@ export default function Home() {
 
    return (
             <>
-               <div className="h-screen bg-gray-100 flex">
+               <div className="h-screen bg-gray-200 flex">
     
-                  <div className="m-2 w-full border border-black
+                  <div className="m-2 w-full 
                                   flex flex-col">
-                        <div className="h-24 border rounded-lg border-red-300
-                                        flex flex-row justify-center p-4">
+                        <div className="h-24 border-b border-gray-800 shadow-md rounded-lg 
+                                        bg-white flex flex-row justify-center p-4">
                             
                             <button onClick={()=>{navigate("/create-room")}} 
-                            className="w-40 bg-green-200 hover:bg-green-500 border rounded-full border-green-300">CREATE ROOM</button>    
+                            className="w-40 bg-green-200 hover:bg-green-500 border rounded-full ">CREATE ROOM</button>    
                         
                         </div>
     
-                        <div className="mt-8 h-screen border border-red-700">
+                        <div className="mt-8 h-screen">
                                 
-                            <div className="m-8 border border-black h-3/4
-                                 grid grid-cols-5 grid-rows-2 gap-2 ">
-                                <button onClick={()=>{ handleRoomClick("room1") } }  className="m-4 border border-red-500">ROOM1</button>
+                            <div className="m-8  h-3/4
+                                grid grid-cols-5 grid-rows-2 gap-2 ">
+                                <button onClick={()=>{ handleRoomClick("room1") } }  className="transition-transform hover:scale-110 hover:bg-gray-100  hover: bg-white m-4 border rounded-lg shadow-gray-500 shadow-md">ROOM1</button>
+                                <button onClick={()=>{ handleRoomClick("room1") } }  className="transition-transform hover:scale-110 hover:bg-gray-100 bg-white m-4 border rounded-lg shadow-gray-500 shadow-md">ROOM2</button>
                             </div>            
     
                         </div>

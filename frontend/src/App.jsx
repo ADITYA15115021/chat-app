@@ -1,4 +1,6 @@
 
+import './index.css';
+
 import {BrowserRouter,Routes,Route} from "react-router-dom";
 import Home from "./pages/home";
 import CreateRoom from "./pages/room";

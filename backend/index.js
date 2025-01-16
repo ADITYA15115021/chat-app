@@ -21,7 +21,7 @@ const rooms = {
 const wss = new WebSocketServer({server});
 
 wss.on( "connection", (socket,req)=>{
-    console.log("connected ");
+    console.log("connected");
     socket.send("connected to websocket server !");
     
     socket.on( "message",(message)=>{
@@ -32,10 +32,11 @@ wss.on( "connection", (socket,req)=>{
         
         if( type === "JOIN_ROOM" ){
             console.log("one request for joining!")
-            const {roomId,password} = payload;
+            const {roomId,password,username} = payload;
 
             if( rooms[roomId] && rooms[roomId] === password  ){
                 socket.room = roomId;
+                socket.username = username;
                 clients[socket] = roomId;
                 socket.send(JSON.stringify( { status : "success" , msg : `joined to room wth id ${roomId}`} ) );
             }else{
@@ -43,12 +44,14 @@ wss.on( "connection", (socket,req)=>{
             }
         }
 
-        else if( type === "USER_MESSAGE" ){
+        else if( type === "CHAT_MESSAGE" ){
+            console.log()
+            const {username,message} = payload;
              if( clients[socket] ){
                 const curr_room = clients[socket];
                 wss.clients.forEach( (client) => {
                     if( socket != client && client.room === curr_room ){
-                        client.send(JSON.stringify( { data : text  } ));
+                        client.send(JSON.stringify( { username : username , message : message  } ));
                     }
                 } )
              }else{
